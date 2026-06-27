@@ -1,0 +1,186 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+overflow-x:hidden;
+}
+
+section{
+padding:60px 0;
+}
+.navbar{
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.navbar-brand{
+font-size:28px;
+font-weight:bold;
+}
+
+.nav-link{
+font-size:17px;
+margin-left:10px;
+}
+
+.nav-link:hover{
+color:yellow !important;
+}
+
+.hero{
+height:80vh;
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:60px;
+font-weight:bold;
+}
+
+.hero p{
+font-size:22px;
+margin:20px 0;
+}
+
+.card{
+border:none;
+transition:.3s;
+border-radius:12px;
+overflow:hidden;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+.card img{
+height:220px;
+object-fit:cover;
+}
+
+.card-body{
+text-align:center;
+}
+
+.card h5{
+font-weight:bold;
+}
+
+.card h4{
+margin:15px 0;
+}
+
+.btn{
+border-radius:30px;
+}
+
+.btn-primary:hover{
+transform:scale(1.05);
+}
+
+.btn-success:hover{
+transform:scale(1.05);
+}
+
+.btn-warning:hover{
+transform:scale(1.05);
+}
+
+.product-image{
+width:100%;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+#cartItems .card{
+padding:15px;
+}
+
+#cartItems button{
+margin-right:5px;
+}
+
+form{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+input,
+select{
+margin-bottom:15px;
+}
+
+footer{
+background:#0d6efd;
+color:white;
+padding:25px;
+text-align:center;
+margin-top:50px;
+}
+
+@media(max-width:992px){
+
+.hero h1{
+font-size:45px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+}
+
+@media(max-width:768px){
+
+.hero{
+height:60vh;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.card img{
+height:180px;
+}
+
+}
+
+@media(max-width:576px){
+
+.hero h1{
+font-size:28px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.navbar-brand{
+font-size:22px;
+}
+
+.card img{
+height:160px;
+}
+
+}

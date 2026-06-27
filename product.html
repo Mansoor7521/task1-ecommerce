@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mansoor Malik| Product Details</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<div class="container">
+
+<a class="navbar-brand fw-bold" href="index.html">
+ Mansoor Malik
+</a>
+
+<button class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#menu">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="index.html">
+Home
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="shop.html">
+Shop
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="cart.html">
+Cart
+<span class="badge bg-warning text-dark" id="cartCount">0</span>
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="checkout.html">
+Checkout
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<img
+id="detailImage"
+class="img-fluid rounded shadow"
+style="width:100%;height:450px;object-fit:cover;">
+
+</div>
+
+<div class="col-md-6">
+
+<h2 id="detailName"></h2>
+
+<h3 class="text-success mt-3" id="detailPrice"></h3>
+
+<p class="mt-4" id="detailDescription"></p>
+
+<button
+class="btn btn-success btn-lg mt-3"
+onclick="addCurrentProduct()">
+
+Add To Cart
+
+</button>
+
+<a href="shop.html"
+class="btn btn-outline-primary btn-lg mt-3 ms-2">
+
+Back To Shop
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<div class="container text-center">
+
+<p class="mb-0">
+
+© 2026 MA Shop. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+
+updateCartCount();
+
+const id = Number(localStorage.getItem("selectedProduct"));
+
+currentProduct = products.find(p => p.id === id);
+
+if(currentProduct){
+
+document.getElementById("detailImage").src = currentProduct.image;
+
+document.getElementById("detailName").innerHTML = currentProduct.name;
+
+document.getElementById("detailPrice").innerHTML = "$" + currentProduct.price;
+
+document.getElementById("detailDescription").innerHTML = currentProduct.description;
+
+}
+
+function addCurrentProduct(){
+
+addToCart(currentProduct.id);
+
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
