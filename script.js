@@ -163,6 +163,50 @@ Add To Cart
 });
 
 }
+function applyFilters() {
+
+let result = [...products];
+
+// Search
+const searchValue = document.getElementById("search")?.value.toLowerCase() || "";
+
+if(searchValue){
+
+result = result.filter(product =>
+product.name.toLowerCase().includes(searchValue)
+);
+
+}
+
+// Category
+const categoryValue = document.getElementById("category")?.value || "all";
+
+if(categoryValue !== "all"){
+
+result = result.filter(product =>
+product.category === categoryValue
+);
+
+}
+
+// Sort
+const sortValue = document.getElementById("sort")?.value;
+
+if(sortValue === "low"){
+
+result.sort((a,b)=>a.price-b.price);
+
+}
+
+if(sortValue === "high"){
+
+result.sort((a,b)=>b.price-a.price);
+
+}
+
+displayProducts(result);
+
+}
 
 function openProduct(id){
 
@@ -407,78 +451,94 @@ loadCart();
 
 }
 
-const search=document.getElementById("search");
+const search = document.getElementById("search");
 
-if(search){
+if (search) {
 
-search.addEventListener("keyup",function(){
+    search.addEventListener("keyup", function () {
 
-const key=this.value.toLowerCase();
+        const key = this.value.toLowerCase();
+        const selectedCategory = document.getElementById("category").value;
+        const selectedSort = document.getElementById("sort").value;
 
-const result=products.filter(product=>
+        let result = [...products];
 
-product.name.toLowerCase().includes(key)
+        if (key !== "") {
+            result = result.filter(product =>
+                product.name.toLowerCase().includes(key)
+            );
+        }
+        if (selectedCategory !== "all") {
+            result = result.filter(product =>
+                product.category === selectedCategory
+            );
+        }
+        if (selectedSort === "low") {
+            result.sort((a, b) => a.price - b.price);
+        } else if (selectedSort === "high") {
+            result.sort((a, b) => b.price - a.price);
+        }
 
-);
+        displayProducts(result);
 
-displayProducts(result);
+    });
+
+}
+
+category.addEventListener("change", function () {
+
+    const key = document.getElementById("search").value.toLowerCase();
+    const selectedSort = document.getElementById("sort").value;
+
+    let result = [...products];
+    if (key !== "") {
+        result = result.filter(product =>
+            product.name.toLowerCase().includes(key)
+        );
+    }
+    if (this.value !== "all") {
+        result = result.filter(product =>
+            product.category === this.value
+        );
+    }
+    if (selectedSort === "low") {
+        result.sort((a, b) => a.price - b.price);
+    } else if (selectedSort === "high") {
+        result.sort((a, b) => b.price - a.price);
+    }
+
+    displayProducts(result);
 
 });
 
-}
+sort.addEventListener("change", function () {
 
+    const key = document.getElementById("search").value.toLowerCase();
+    const selectedCategory = document.getElementById("category").value;
 
-const category=document.getElementById("category");
+    let result = [...products];
 
-if(category){
+    if (key !== "") {
+        result = result.filter(product =>
+            product.name.toLowerCase().includes(key)
+        );
+    }
 
-category.addEventListener("change",function(){
+    if (selectedCategory !== "all") {
+        result = result.filter(product =>
+            product.category === selectedCategory
+        );
+    }
 
-if(this.value==="all"){
+    if (this.value === "low") {
+        result.sort((a, b) => a.price - b.price);
+    } else if (this.value === "high") {
+        result.sort((a, b) => b.price - a.price);
+    }
 
-displayProducts(products);
-
-return;
-
-}
-
-const result=products.filter(product=>
-
-product.category===this.value
-
-);
-
-displayProducts(result);
-
-});
-
-}
-
-const sort=document.getElementById("sort");
-
-if(sort){
-
-sort.addEventListener("change",function(){
-
-let temp=[...products];
-
-if(this.value==="low"){
-
-temp.sort((a,b)=>a.price-b.price);
-
-}
-
-if(this.value==="high"){
-
-temp.sort((a,b)=>b.price-a.price);
-
-}
-
-displayProducts(temp);
+    displayProducts(result);
 
 });
-
-}
 
 const checkout=document.getElementById("checkoutForm");
 
