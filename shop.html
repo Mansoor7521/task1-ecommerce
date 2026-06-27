@@ -189,68 +189,6 @@ High → Low
 
 <script src="script.js"></script>
 
-<script>
-
-updateCartCount();
-
-displayProducts(products);
-
-document.getElementById("search").addEventListener("keyup",function(){
-
-let keyword=this.value.toLowerCase();
-
-let filtered=products.filter(product=>
-
-product.name.toLowerCase().includes(keyword)
-
-);
-
-displayProducts(filtered);
-
-});
-
-document.getElementById("category").addEventListener("change",function(){
-
-if(this.value==="all"){
-
-displayProducts(products);
-
-return;
-
-}
-
-let filtered=products.filter(product=>
-
-product.category===this.value
-
-);
-
-displayProducts(filtered);
-
-});
-
-document.getElementById("sort").addEventListener("change",function(){
-
-let temp=[...products];
-
-if(this.value==="low"){
-
-temp.sort((a,b)=>a.price-b.price);
-
-}
-
-if(this.value==="high"){
-
-temp.sort((a,b)=>b.price-a.price);
-
-}
-
-displayProducts(temp);
-
-});
-
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
