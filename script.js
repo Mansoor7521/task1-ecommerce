@@ -167,7 +167,6 @@ function applyFilters() {
 
 let result = [...products];
 
-// Search
 const searchValue = document.getElementById("search")?.value.toLowerCase() || "";
 
 if(searchValue){
@@ -178,7 +177,6 @@ product.name.toLowerCase().includes(searchValue)
 
 }
 
-// Category
 const categoryValue = document.getElementById("category")?.value || "all";
 
 if(categoryValue !== "all"){
@@ -189,7 +187,6 @@ product.category === categoryValue
 
 }
 
-// Sort
 const sortValue = document.getElementById("sort")?.value;
 
 if(sortValue === "low"){
@@ -450,95 +447,21 @@ saveCart();
 loadCart();
 
 }
-
 const search = document.getElementById("search");
+const category = document.getElementById("category");
+const sort = document.getElementById("sort");
 
 if (search) {
-
-    search.addEventListener("keyup", function () {
-
-        const key = this.value.toLowerCase();
-        const selectedCategory = document.getElementById("category").value;
-        const selectedSort = document.getElementById("sort").value;
-
-        let result = [...products];
-
-        if (key !== "") {
-            result = result.filter(product =>
-                product.name.toLowerCase().includes(key)
-            );
-        }
-        if (selectedCategory !== "all") {
-            result = result.filter(product =>
-                product.category === selectedCategory
-            );
-        }
-        if (selectedSort === "low") {
-            result.sort((a, b) => a.price - b.price);
-        } else if (selectedSort === "high") {
-            result.sort((a, b) => b.price - a.price);
-        }
-
-        displayProducts(result);
-
-    });
-
+    search.addEventListener("keyup", applyFilters);
 }
 
-category.addEventListener("change", function () {
+if (category) {
+    category.addEventListener("change", applyFilters);
+}
 
-    const key = document.getElementById("search").value.toLowerCase();
-    const selectedSort = document.getElementById("sort").value;
-
-    let result = [...products];
-    if (key !== "") {
-        result = result.filter(product =>
-            product.name.toLowerCase().includes(key)
-        );
-    }
-    if (this.value !== "all") {
-        result = result.filter(product =>
-            product.category === this.value
-        );
-    }
-    if (selectedSort === "low") {
-        result.sort((a, b) => a.price - b.price);
-    } else if (selectedSort === "high") {
-        result.sort((a, b) => b.price - a.price);
-    }
-
-    displayProducts(result);
-
-});
-
-sort.addEventListener("change", function () {
-
-    const key = document.getElementById("search").value.toLowerCase();
-    const selectedCategory = document.getElementById("category").value;
-
-    let result = [...products];
-
-    if (key !== "") {
-        result = result.filter(product =>
-            product.name.toLowerCase().includes(key)
-        );
-    }
-
-    if (selectedCategory !== "all") {
-        result = result.filter(product =>
-            product.category === selectedCategory
-        );
-    }
-
-    if (this.value === "low") {
-        result.sort((a, b) => a.price - b.price);
-    } else if (this.value === "high") {
-        result.sort((a, b) => b.price - a.price);
-    }
-
-    displayProducts(result);
-
-});
+if (sort) {
+    sort.addEventListener("change", applyFilters);
+}
 
 const checkout=document.getElementById("checkoutForm");
 
@@ -574,7 +497,7 @@ updateCartCount();
 
 featured();
 
-displayProducts(products);
+applyFilters();
 
 loadProduct();
 
